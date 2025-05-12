@@ -37,12 +37,55 @@ To write a Python program to demonstrate the **adjacency list representation** o
 ## PYTHON PROGRAM
 
 ```
-ENTER YOUR CODE HERE
+class AdjNode:
+    def __init__(self, data):
+        self.vertex = data
+        self.next = None
+
+class Graph:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = [None] * self.V
+
+    def add_edge(self, src, dest):
+        # Add node to the source's adjacency list
+        node = AdjNode(dest)
+        node.next = self.graph[src]
+        self.graph[src] = node
+
+        # Since the graph is undirected, add node to dest's adjacency list
+        node = AdjNode(src)
+        node.next = self.graph[dest]
+        self.graph[dest] = node
+
+    def print_graph(self):
+        for i in range(self.V):
+            print("Adjacency list of vertex {}:".format(i), end="")
+            temp = self.graph[i]
+            while temp:
+                print(" -> {}".format(temp.vertex), end="")
+                temp = temp.next
+            print()
+
+# Example usage
+V = 5
+g = Graph(V)
+g.add_edge(0, 1)
+g.add_edge(0, 4)
+g.add_edge(1, 2)
+g.add_edge(1, 3)
+g.add_edge(1, 4)
+g.add_edge(2, 3)
+g.add_edge(3, 4)
+
+print("Adjacency List Representation of Graph:")
+g.print_graph()
+
 ```
 
 ## OUTPUT
-```
-```
+![image](https://github.com/user-attachments/assets/5c81cf8b-d93b-4022-a945-904483343074)
+
 
 ## RESULT
-
+Thus, the Python program to demonstrate the adjacency list representation of a graph has been successfully implemented and executed.
